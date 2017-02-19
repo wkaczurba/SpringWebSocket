@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.ITemplateEngine;
 import org.thymeleaf.TemplateEngine;
@@ -21,6 +22,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	// TODO: Add ViewResolver ( Thymeleaf, ITemplate, ITemplateResolver, etc... }
 	// Then in Controller -> add mapping "/" -> "main"
 	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/webjars/**")
+			.addResourceLocations("classpath:/META-INF/resources/webjars/");
+	}
 	
 	// as from: https://github.com/wkaczurba/SpringMvcThymeleaf/commit/00444f706632916c50a4cd1ef22def0584e50d4a#diff-162cf085831c2cc0c3b86c7a5b8f3470
 	@Bean

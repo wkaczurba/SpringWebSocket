@@ -39,6 +39,34 @@
     	<artifactId>thymeleaf-spring4</artifactId>
     	<version>3.0.3.RELEASE</version>
     </dependency>
+    
+    <!-- WEBJARS for Javascript-side -->
+    <dependency>
+    	<groupId>org.webjars</groupId>
+    	<artifactId>jquery</artifactId>
+    	<version>2.0.3-1</version>
+        <scope>compile</scope>
+    </dependency>
+    <!-- WEBJARS for Javascript-side -->
+    <dependency>
+    	<groupId>org.webjars</groupId>
+    	<artifactId>sockjs-client</artifactId>
+    	<version>0.3.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <!-- WEBJARS for Javascript-side -->
+    <dependency>
+    	<groupId>org.webjars</groupId>
+    	<artifactId>stomp-websocket</artifactId>
+    	<version>2.3.0</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>com.fasterxml.jackson.core</groupId>
+    	<artifactId>jackson-databind</artifactId>
+    	<version>2.8.6</version>
+    	<scope>compile</scope>
+    </dependency>
   </dependencies>
   <build>
     <finalName>SpringWebSocket</finalName>

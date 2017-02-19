@@ -1,13 +1,49 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+  <meta charset="ISO-8859-1">
+  <title>Insert title here</title>
+  <!-- to make webjars working: need to add webjars to pom.xml + add handler for /webjars/** to classpath:/META-INF/resources/webjars/ -->
+  <script th:src="@{/webjars/sockjs-client/0.3.4/sockjs.min.js}"></script>
+  <script th:src="@{/webjars/jquery/2.0.3/jquery.min.js}"></script>
 </head>
 <body>
 <H1>Main.html</H1>
 TODO: Add javascript and other stuff...<br/>
 
+	<button id="stop">Stop</button>
+
+	<script th:inline="javascript">
+	
+	  var sock = new SockJS([[@{/marco}]]);
+	  
+	  sock.onopen = function() {
+		  console.log('opening');
+		  sayMarco();
+	  }
+	  
+	  sock.onmessage = function(e) {
+		  console.log('Received message:', e.data);
+		  $('#output').append('Received: "' + e.data + '".<br/>');
+		  setTimeout(function(){sayMarco()}, 2000);
+	  }
+	  
+	  sock.onclose = function() {
+		  console.log('closing');
+	  }
+	  
+	  function sayMarco() {
+		  console.log('Saying marco.');
+		  $('#output').append('Sending "marco"!<br/>');
+		  sock.send('marco');
+	  }
+	  
+	  $('#stop').click(function() { sock.close()});
+	  
+	  // TODO: Stoppoing
+	</script>
+	
+	<div id="output"></div><br/>
 <span th:with="someVariable='Thymeleaf varaible'" th:inline="text">[[${someVariable}]]</span>
 
 </body>
